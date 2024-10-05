@@ -1,65 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "../layout/Typography";
 import Box from "../layout/Box";
 import ArticleCard from "../layout/ArticleCard";
-import articleImageOne from "/public/images/article-image-one.png";
-import articleImageTwo from "/public/images/article-image-two.png";
-import articleImageThree from "/public/images/article-image-three.png";
-import articleImageFour from "/public/images/article-image-four.png";
-import articleImageFive from "/public/images/article-image-five.png";
-import articleImageSix from "/public/images/article-image-six.png";
+import axios from "axios";
 
 const AllArticle = () => {
-  let article = [
-    {
-      image: articleImageOne,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageTwo,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageThree,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageFour,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageFive,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageSix,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageOne,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageTwo,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageThree,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageFour,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageFive,
-      heading: "Here are some things you should know regarding how we work",
-    },
-    {
-      image: articleImageSix,
-      heading: "Here are some things you should know regarding how we work",
-    },
-  ];
+  const [article, setArticle] = useState([])
+
+  useEffect(() => {
+    async function allblog() {
+      let response = await axios.get("http://localhost:8000/allblog")
+      setArticle(response.data);
+    }
+    allblog()
+  } , [])
 
   return (
     <section className="container mx-auto bg-white pt-14 pb-[100px]">
@@ -73,8 +27,8 @@ const AllArticle = () => {
       <Box className={`w-[700px] mx-auto flex justify-center gap-y-10 gap-x-7 flex-wrap`}>
         {article.map((item, index) => (
           <ArticleCard
-            image={item.image}
-            heading={item.heading}
+            image={`http://localhost:8000${item.image}`}
+            heading={item.title}
             className={`w-[48%] cursor-pointer`}
           />
         ))}

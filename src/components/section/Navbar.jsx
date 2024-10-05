@@ -8,20 +8,20 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   let navmenu = [
     {
-      name: "blog",
+      name: "home",
       path: "/",
-    },
-    {
-      name: "category",
-      path: "/article",
     },
     {
       name: "write blog",
       path: "/write-blog",
     },
     {
-      name: "projects",
-      path: "/projects",
+      name: "login",
+      path: "/login",
+    },
+    {
+      name: "registration",
+      path: "/registration",
     },
   ];
 
